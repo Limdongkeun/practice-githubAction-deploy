@@ -31,8 +31,8 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-#    - name: Make gradlew executable
-#      run: chmod +x ./gradlew
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
@@ -50,7 +50,7 @@ jobs:
       run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://$S3_BUCKET_NAME/practice-deploy.zip
     - name: Code Deploy
       run: >
-          aws deploy create-deployment --application-name be-pair-13
-          --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name be-pair-13-group
-          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
+        aws deploy create-deployment --application-name be-pair-13
+        --deployment-config-name CodeDeployDefault.AllAtOnce
+        --deployment-group-name be-pair-13-group
+        --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
